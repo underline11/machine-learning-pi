@@ -1,0 +1,15 @@
+# Constante
+PI = 3.14159
+
+# Entrada de dados
+raio = float(input("Digite o valor do raio do cilindro: "))
+altura = float(input("Digite o valor da altura do cilindro: "))
+
+# Cálculos
+volume = PI * raio**2 * altura  # Fórmula do volume do cilindro
+area_base = PI * raio**2       # Fórmula da área da base do cilindro
+
+# Saída formatada
+print("\nResultados do Cálculo:")
+print(f"Volume do cilindro: {volume:.2f}")
+print(f"Área da base do cilindro: {area_base:.2f}")
