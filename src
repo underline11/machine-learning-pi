@@ -1,15 +1,51 @@
+import tkinter as tk
+from tkinter import messagebox
+
 # Constante
 PI = 3.14159
 
-# Entrada de dados
-raio = float(input("Digite o valor do raio do cilindro: "))
-altura = float(input("Digite o valor da altura do cilindro: "))
+def calcular():
+    try:
+        # Obter valores de entrada
+        raio = float(entry_raio.get())
+        altura = float(entry_altura.get())
 
-# Cálculos
-volume = PI * raio**2 * altura  # Fórmula do volume do cilindro
-area_base = PI * raio**2       # Fórmula da área da base do cilindro
+        # Cálculos
+        volume = PI * raio**2 * altura
+        area_base = PI * raio**2
 
-# Saída formatada
-print("\nResultados do Cálculo:")
-print(f"Volume do cilindro: {volume:.2f}")
-print(f"Área da base do cilindro: {area_base:.2f}")
+        # Exibir resultados
+        resultado_volume.set(f"Volume do cilindro: {volume:.2f}")
+        resultado_area_base.set(f"Área da base do cilindro: {area_base:.2f}")
+    except ValueError:
+        messagebox.showerror("Erro de entrada", "Por favor, insira valores numéricos válidos!")
+
+# Janela principal
+root = tk.Tk()
+root.title("Calculadora de Cilindro")
+
+# Interface
+tk.Label(root, text="Calculadora de Volume e Área do Cilindro", font=("Arial", 14)).grid(row=0, column=0, columnspan=2, pady=10)
+
+tk.Label(root, text="Raio do cilindro:").grid(row=1, column=0, sticky="e", padx=5, pady=5)
+entry_raio = tk.Entry(root)
+entry_raio.grid(row=1, column=1, padx=5, pady=5)
+
+tk.Label(root, text="Altura do cilindro:").grid(row=2, column=0, sticky="e", padx=5, pady=5)
+entry_altura = tk.Entry(root)
+entry_altura.grid(row=2, column=1, padx=5, pady=5)
+
+tk.Button(root, text="Calcular", command=calcular).grid(row=3, column=0, columnspan=2, pady=10)
+
+# Resultados
+resultado_volume = tk.StringVar()
+resultado_volume.set("Volume do cilindro: -")
+tk.Label(root, textvariable=resultado_volume, font=("Arial", 12)).grid(row=4, column=0, columnspan=2, pady=5)
+
+resultado_area_base = tk.StringVar()
+resultado_area_base.set("Área da base do cilindro: -")
+tk.Label(root, textvariable=resultado_area_base, font=("Arial", 12)).grid(row=5, column=0, columnspan=2, pady=5)
+
+# Rodar a interface
+root.mainloop()
+
